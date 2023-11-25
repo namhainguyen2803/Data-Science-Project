@@ -1,0 +1,30 @@
+# System-level dependencies
+libglib2.0-0
+libnss3
+libdbus-glib-1-2
+libgconf-2-4
+libfontconfig1
+libvulkan1
+gconf2-common
+libwayland-server0
+libgbm1
+udev
+libu2f-udev
+
+# Fix broken installations
+!apt --fix-broken install -y
+
+# Download Chrome and ChromeDriver
+!wget -P /tmp https://edgedl.me.gvt1.com/edgedl/chrome/chrome-for-testing/116.0.5845.96/linux64/chrome-linux64.zip
+!unzip /tmp/chrome-linux64.zip -d /usr/bin/
+!wget -P /tmp https://edgedl.me.gvt1.com/edgedl/chrome/chrome-for-testing/116.0.5845.96/linux64/chromedriver-linux64.zip
+!unzip /tmp/chromedriver-linux64.zip -d /usr/bin/
+
+# Python Selenium
+python3-selenium
+
+# Python packages
+selenium==4.7.0
+webdriver_manager
+timm
+transformers
