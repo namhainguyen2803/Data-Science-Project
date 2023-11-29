@@ -116,12 +116,8 @@ class Crawler:
                 self.driver.save_screenshot(captcha_page_image)
 
                 img = Image.open('page_captcha.png')
-                plt.imshow(img)
-                plt.show()
                 x1, y1, x2, y2 = 734, 368, 1186, 468
                 cropped_img = img.crop((x1, y1, x2, y2))
-                plt.imshow(cropped_img)
-                plt.show()
                 cropped_img.save(captcha_image)
 
                 src_link = self.root + check_captcha.get('src')
