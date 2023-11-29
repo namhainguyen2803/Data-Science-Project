@@ -8,7 +8,6 @@ from selenium.webdriver.chrome.options import Options
 CHROME_BINARY_LOCATION = "/usr/bin/chrome-linux64/chrome"
 CHROMEDRIVER_BINARY_LOCATION = "/usr/bin/chromedriver-linux64/chromedriver"
 
-
 def add_driver_options(options):
     """
     Add configurable options
@@ -17,7 +16,6 @@ def add_driver_options(options):
     for opt in options:
         chrome_options.add_argument(opt)
     return chrome_options
-
 
 def initialize_driver():
     """
