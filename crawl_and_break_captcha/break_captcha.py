@@ -19,10 +19,7 @@ def initialize_detector():
     detector = pipeline(model=checkpoint, task="zero-shot-image-classification")
     return detector
 
-def break_captcha(captcha_image):
-
-    checkpoint = "openai/clip-vit-large-patch14"
-    detector = pipeline(model=checkpoint, task="zero-shot-image-classification")
+def break_captcha(detector, captcha_image):
 
     img = Image.open(captcha_image)
 
@@ -52,10 +49,11 @@ def break_captcha(captcha_image):
     for i in range(len(border_colors)):
         if np.all(border_colors[i] == np.array([255, 255, 1, 255])):
             part = img.crop(regions[i])
+            width, height = part.size
+            x1, y1, x2, y2 = 5, 5, width - 5, height - 5
+            part = part.crop((x1, y1, x2, y2))
             predictions = detector(part, candidate_labels=CANDIDATE_LABEL)
             res.append(predictions)
-            plt.imshow(part)
-            plt.show()
 
     res_captcha = ""
     final_res = post_process_result(res)
